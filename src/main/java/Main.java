@@ -11,33 +11,34 @@ public class Main {
         WorldDB db = new WorldDB();
 
         Scanner input = new Scanner(System.in);
-        System.out.print("country code: ");
-        String code = input.nextLine();
+        System.out.print("Countries that have a population greater than: ");
+        String number = input.nextLine();
 
-        for (City city : db.getCitiesInCountry(code)) {
+// MAKING IT COOOOOOLLLL!
+
+
+        // my cool method for steve's cool database
+
+        //promps for number of population to filter by
+        System.out.println("Countries with a population above " + number);
+
+        List<Country> countries = db.getCountriesAbovePopulation(number);
+        for (Country country : countries) {
+            System.out.println("  " + country);
+        }
+        System.out.println();
+
+        //scans for second question once list is generated:
+        Scanner input2 = new Scanner(System.in);
+        System.out.print("Type in one of those three character country codes above ");
+        String country = input2.nextLine();
+        System.out.print("The country you selected was " + country);
+
+        // returns all cities from the country with their population
+        for (City city : db.getCitiesInCountry(country)) {
             System.out.println(city);
         }
         System.out.println();
 
-        System.out.println("All countries:");
-        List<Country> countries = db.getAllCountries();
-        for (Country country : countries) {
-            System.out.println("  " + country);
-        }
-        System.out.println();
-
-        System.out.println("Population 1,000-10,000");
-        countries = db.getCountriesBetweenPopulation(1_000, 10_000);
-        for (Country country : countries) {
-            System.out.println("  " + country);
-        }
-        System.out.println();
-
-        System.out.println("Abandoned countries:");
-        countries = db.getCountriesBelowPopulation(1);
-        for (Country country : countries) {
-            System.out.println("  " + country);
-        }
-        System.out.println();
     }
 }
